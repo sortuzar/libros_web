@@ -13,3 +13,6 @@ input/*.xlsx
 /.Rproj.user/
 
 /.Rproj.user/**
+
+# RStudio files
+.Rproj.user/

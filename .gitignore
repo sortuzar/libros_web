@@ -3,8 +3,13 @@
 .RData
 .Ruserdata
 
-# archivos Rproj.user
-.Rproj.user/**
-
 # input en Excel
 input/*.xlsx
+
+/.quarto/
+
+/.quarto/**
+
+/.Rproj.user/
+
+/.Rproj.user/**

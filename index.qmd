@@ -1,8 +1,6 @@
 ---
-title: "Libros"
+#title: "Libros"
 ---
-
-<h2>Venta de libros</h2>
 
 <p><i>Última actualización: `{r} as.Date(Sys.Date(),format="%Y-%m-%d")`</i></p>
 
@@ -11,6 +9,9 @@ Hola, me llamo Santiago y estoy vendiendo parte de mi biblioteca. Abajo se detal
 Los libros tienen información incompleta, entre otras cosas, sobre coautores/as, editorial, año, y tapa dura/tapa rústica, además de detalles sobre el estado del libro (si tiene rayas con lápiz pasta, daños observables, etc.). Estaré actualizando el documento regularmente para incluir la información que falta. Si necesitas información de un libro cuyas columnas todavía no lleno puedes escribirme al correo. 
 
 ```{r}
+#| warning: false
+#| message: false
+#| output: false
 
 # Limpiar environment ----------------------------------------------------------
 rm(list=ls())
@@ -29,12 +30,29 @@ carpeta_aqui <- rprojroot::find_rstudio_root_file()
 
 # Cargar archivo ---------------------------------------------------------------
 catalogo_venta_temporal <- readxl::read_xlsx(paste0(carpeta_aqui,"/input/libros.xlsx"))
+```
+
+```{r}
+#| warning: false
+#| message: false
+#| output: true
 
 # Crear tabla ------------------------------------------------------------------
 catalogo_venta_temporal %>% 
+  select(-`En venta`,
+         -Vendido) %>% 
+  mutate(across(all_of(c("Volumen",
+                         "Número",
+                         "Si tiene algún daño observable, ¿cuál es?")),
+                ~as.character(.))) %>% 
+  mutate(across(where(is.character),
+                ~if_else(is.na(.),
+                         " ",
+                         .))) %>% 
   gt::gt() %>% 
   tab_options(table.width = pct(100),
               column_labels.hidden=FALSE) %>%
   opt_row_striping(row_striping=TRUE) %>% 
   gt::as_raw_html()
 ```
+

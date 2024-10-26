@@ -3,12 +3,11 @@ project:
   output-dir: docs
 
 website:
-  title: "libros_web"
+  title: "Libros"
   navbar:
     left:
       - href: index.qmd
-        text: Home
-      - about.qmd
+        text: Libros
 
 format:
   html:
@@ -20,7 +19,7 @@ format:
 
 execute: 
   eval: true
-  output: false
   warning: false
+  message: false
   echo: false
-
+  output: false

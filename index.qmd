@@ -1,11 +1,40 @@
 ---
-title: "libros_web"
+title: "Libros"
 ---
 
-This is a Quarto website.
+<h2>Venta de libros</h2>
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+<p><i>Última actualización: `{r} as.Date(Sys.Date(),format="%Y-%m-%d")`</i></p>
+
+Hola, me llamo Santiago y estoy vendiendo parte de mi biblioteca. Abajo se detallan los precios y las características de cada libro. Puedes contactarme a sa.ortuzar@gmail.com si estás interesado/a.
+
+Los libros tienen información incompleta, entre otras cosas, sobre coautores/as, editorial, año, y tapa dura/tapa rústica, además de detalles sobre el estado del libro (si tiene rayas con lápiz pasta, daños observables, etc.). Estaré actualizando el documento regularmente para incluir la información que falta. Si necesitas información de un libro cuyas columnas todavía no lleno puedes escribirme al correo. 
 
 ```{r}
-1 + 1
+
+# Limpiar environment ----------------------------------------------------------
+rm(list=ls())
+
+# Cargar librerías -------------------------------------------------------------
+### En uso
+library(tidyverse)
+library(readxl)
+library(rprojroot)
+library(tidylog)
+library(gt)
+library(gtExtras)
+
+# Fijar directorios ------------------------------------------------------------
+carpeta_aqui <- rprojroot::find_rstudio_root_file()
+
+# Cargar archivo ---------------------------------------------------------------
+catalogo_venta_temporal <- readxl::read_xlsx(paste0(carpeta_aqui,"/input/libros.xlsx"))
+
+# Crear tabla ------------------------------------------------------------------
+catalogo_venta_temporal %>% 
+  gt::gt() %>% 
+  tab_options(table.width = pct(100),
+              column_labels.hidden=FALSE) %>%
+  opt_row_striping(row_striping=TRUE) %>% 
+  gt::as_raw_html()
 ```

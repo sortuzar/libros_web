@@ -18,5 +18,9 @@ format:
     
 # referencia: https://www.danyavorsky.com/posts/020-quarto-websites/#:~:text=In%20Rstudio%2C%20click%20the%20%E2%80%9CRender,directory%20and%20run%20quarto%20preview%20.
 
-
+execute: 
+  eval: true
+  output: false
+  warning: false
+  echo: false
 

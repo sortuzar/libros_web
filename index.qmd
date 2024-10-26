@@ -1,5 +1,11 @@
 ---
-#title: "Libros"
+title: "Libros"
+format:
+  html:
+    html-table-processing: none # importante para el formato de las tablas html
+    page-layout: full
+editor_options: 
+  chunk_output_type: console
 ---
 
 <p><i>Última actualización: `{r} as.Date(Sys.Date(),format="%Y-%m-%d")`</i></p>

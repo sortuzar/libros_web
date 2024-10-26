@@ -2,3 +2,9 @@
 .Rhistory
 .RData
 .Ruserdata
+
+# archivos Rproj.user
+.Rproj.user/**
+
+# input en Excel
+input/*.xlsx

@@ -58,7 +58,8 @@ catalogo_venta_temporal %>%
   gt::gt() %>% 
   tab_options(table.width = pct(100),
               column_labels.hidden=FALSE,
-              table.align="left") %>%
+              table.align="left",
+              table.font.size=pct(80)) %>%
   opt_row_striping(row_striping=TRUE) %>% 
   gt::as_raw_html()
 ```
